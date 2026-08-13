@@ -4,7 +4,7 @@ import Button from './Button.jsx'
 function Navbar() {
   return (
     <header className="w-full bg-background">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
         <Link to="/" className="shrink-0">
           <img src="/logo.svg" alt="Skin is Ki" width={162} height={30} />
         </Link>
