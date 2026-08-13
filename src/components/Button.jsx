@@ -5,7 +5,7 @@ import arrowUpRight from '../assets/arrow-up-right.svg'
 
 const ARROW_SHIFT = 4
 
-function Button({ to, href, children, className = '', ...props }) {
+function Button({ to, href, children, variant = 'dark', className = '', ...props }) {
   const lineRef = useRef(null)
   const textInnerRef = useRef(null)
   const arrowRef = useRef(null)
@@ -47,7 +47,10 @@ function Button({ to, href, children, className = '', ...props }) {
     })
   }
 
-  const classes = `relative inline-flex items-center justify-center rounded text-[20px] px-10 py-3 bg-dark text-white ${className}`
+  const variantClasses =
+    variant === 'light' ? 'bg-white text-dark' : 'bg-dark text-white'
+
+  const classes = `relative inline-flex items-center justify-center rounded text-[20px] px-10 py-3 ${variantClasses} ${className}`
 
   const content = (
     <span className="relative inline-flex items-center">
@@ -69,7 +72,13 @@ function Button({ to, href, children, className = '', ...props }) {
           className="block h-3 w-3 opacity-0"
           style={{ transform: `translateX(${ARROW_SHIFT}px)` }}
         >
-          <img src={arrowUpRight} alt="" width={12} height={12} className="h-3 w-3" />
+          <img
+            src={arrowUpRight}
+            alt=""
+            width={12}
+            height={12}
+            className={`h-3 w-3 ${variant === 'light' ? 'invert' : ''}`}
+          />
         </span>
       </span>
     </span>
