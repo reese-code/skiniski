@@ -4,10 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const BRAND_TEXT = 'Skin is Ki'
-const BODY_TEXT =
-  ' is founded by Kiana Smith, who is a licensed esthetician who practices esthetics, and her services are waxing, facials, and massages, and other dermatologist recommendations.'
-
 function splitToChars(text, keyPrefix) {
   return text.split('').map((char, i) => (
     <span key={`${keyPrefix}-${i}`} className="about-char">
@@ -16,7 +12,7 @@ function splitToChars(text, keyPrefix) {
   ))
 }
 
-function AnimatedAboutText() {
+function AnimatedAboutText({ brandText, bodyText }) {
   const textRef = useRef(null)
 
   useEffect(() => {
@@ -41,14 +37,14 @@ function AnimatedAboutText() {
     }, textRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [brandText, bodyText])
 
   return (
     <p ref={textRef} className="font-normal text-h2">
       <span className="ml-20 font-editorial text-h2 uppercase max-md:ml-5">
-        {splitToChars(BRAND_TEXT, 'brand')}
+        {splitToChars(brandText, 'brand')}
       </span>
-      {splitToChars(BODY_TEXT, 'body')}
+      {splitToChars(bodyText, 'body')}
     </p>
   )
 }

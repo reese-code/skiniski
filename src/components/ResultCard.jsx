@@ -28,20 +28,24 @@ function ResultCard({ before, after, name, price, description }) {
     <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <div
         ref={imageRef}
-        className="relative aspect-square w-full overflow-hidden rounded-2xl border border-dark/10"
+        className="relative aspect-square w-full overflow-hidden rounded-2xl border border-dark/10 bg-dark/5 max-md:rounded-xl"
       >
-        <img
-          src={before}
-          alt={`${name} before`}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out"
-          style={{ opacity: isHovered ? 0 : 1 }}
-        />
-        <img
-          src={after}
-          alt={`${name} after`}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out"
-          style={{ opacity: isHovered ? 1 : 0 }}
-        />
+        {before && (
+          <img
+            src={before}
+            alt={`${name} before`}
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out"
+            style={{ opacity: isHovered ? 0 : 1 }}
+          />
+        )}
+        {after && (
+          <img
+            src={after}
+            alt={`${name} after`}
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out"
+            style={{ opacity: isHovered ? 1 : 0 }}
+          />
+        )}
 
         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
 

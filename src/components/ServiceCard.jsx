@@ -23,12 +23,21 @@ function ServiceCard({ image, name, price, description }) {
 
   return (
     <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <img
-        ref={imageRef}
-        src={image}
-        alt={name}
-        className="aspect-square w-full rounded-2xl border border-dark/10 object-cover"
-      />
+      {image ? (
+        <img
+          ref={imageRef}
+          src={image}
+          alt={name}
+          className="aspect-square w-full rounded-2xl border border-dark/10 object-cover max-md:rounded-xl"
+        />
+      ) : (
+        <div
+          ref={imageRef}
+          className="flex aspect-square w-full items-center justify-center rounded-2xl border border-dark/10 bg-dark/5 text-dark/40 max-md:rounded-xl"
+        >
+          No image
+        </div>
+      )}
 
       <div className="mt-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
