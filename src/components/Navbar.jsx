@@ -9,9 +9,15 @@ const MOBILE_LINKS = [
   { to: '/results', label: 'Results' },
 ]
 
+const REVEAL_MS = 450
+const CLOSE_MS = 320
+const STAGGER_MS = 60
+const STAGGER_DURATION_MS = 220
+
 function Navbar() {
   const headerRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [revealed, setRevealed] = useState(false)
 
   useLayoutEffect(() => {
     const header = headerRef.current
@@ -33,6 +39,16 @@ function Navbar() {
   }, [])
 
   useEffect(() => {
+    if (isOpen) {
+      setRevealed(true)
+      return
+    }
+
+    const timeout = setTimeout(() => setRevealed(false), CLOSE_MS)
+    return () => clearTimeout(timeout)
+  }, [isOpen])
+
+  useEffect(() => {
     if (!isOpen) return
 
     const closeOnDesktop = () => {
@@ -40,10 +56,12 @@ function Navbar() {
     }
 
     document.body.style.overflow = 'hidden'
+    window.__lenis?.stop()
     window.addEventListener('resize', closeOnDesktop)
 
     return () => {
       document.body.style.overflow = ''
+      window.__lenis?.start()
       window.removeEventListener('resize', closeOnDesktop)
     }
   }, [isOpen])
@@ -51,10 +69,7 @@ function Navbar() {
   const closeMenu = () => setIsOpen(false)
 
   return (
-    <header
-      ref={headerRef}
-      className={`relative w-full ${isOpen ? 'bg-accent md:bg-background' : 'bg-background'}`}
-    >
+    <header ref={headerRef} className="relative w-full bg-background">
       <nav className="mx-auto flex items-center justify-between px-5 py-3 max-md:px-3">
         <Link to="/" className="relative z-20 shrink-0" onClick={closeMenu}>
           <img src="/logo.svg" alt="Skin is Ki" width={162} height={30} />
@@ -100,24 +115,38 @@ function Navbar() {
       </nav>
 
       <div
-        className={`fixed inset-x-0 top-0 z-10 flex h-dvh flex-col overflow-y-auto bg-accent transition-transform duration-500 ease-in-out md:hidden ${
-          isOpen ? 'translate-y-0' : '-translate-y-full'
-        }`}
+        className="fixed inset-x-0 top-0 z-10 flex h-dvh flex-col overflow-y-auto bg-accent md:hidden"
+        style={{
+          transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+          clipPath: revealed
+            ? 'circle(1600px at 50% -10%)'
+            : 'circle(0px at 50% -10%)',
+          transition: isOpen
+            ? `clip-path ${REVEAL_MS}ms ease-out, transform 0ms`
+            : `transform ${CLOSE_MS}ms ease-in, clip-path 0ms`,
+          pointerEvents: isOpen ? 'auto' : 'none',
+        }}
         aria-hidden={!isOpen}
       >
         <div
-          className="flex flex-1 flex-col justify-between px-3 pb-8 pt-8"
+          className="flex flex-1 flex-col justify-between px-3 pb-3 pt-8"
           style={{ paddingTop: 'calc(var(--navbar-height) + 2rem)' }}
         >
-
           <nav className="flex flex-col gap-3">
-            {MOBILE_LINKS.map(({ to, label }) => (
+            {MOBILE_LINKS.map(({ to, label }, index) => (
               <Link
                 key={to}
                 to={to}
                 onClick={closeMenu}
                 className="text-dark leading-[115%]"
-                style={{ fontSize: '64px' }}
+                style={{
+                  fontSize: '64px',
+                  opacity: revealed ? 1 : 0,
+                  transform: revealed ? 'translateY(0)' : 'translateY(16px)',
+                  transition: isOpen
+                    ? `opacity ${STAGGER_DURATION_MS}ms ease-out ${REVEAL_MS + index * STAGGER_MS}ms, transform ${STAGGER_DURATION_MS}ms ease-out ${REVEAL_MS + index * STAGGER_MS}ms`
+                    : 'none',
+                }}
                 tabIndex={isOpen ? 0 : -1}
               >
                 {label}
@@ -125,33 +154,39 @@ function Navbar() {
             ))}
           </nav>
 
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-3">
-                <img
-                  src="/instagram.svg"
-                  alt="Instagram"
-                  width={27}
-                  height={27}
-                />
-                <img src="/tiktok.svg" alt="TikTok" width={23} height={26.5} />
-              </div>
-
-              <div>
-                <h3>kianasmith@gmail.com</h3>
-                <h3>(720) 601 2978</h3>
-              </div>
-
-              <p className="text-dark/70">
-                6969 w 90th ave
-                <br />
-                Westminster, CO 80021
-              </p>
+          <div
+            className="flex flex-col gap-3"
+            style={{
+              opacity: revealed ? 1 : 0,
+              transform: revealed ? 'translateY(0)' : 'translateY(16px)',
+              transition: isOpen
+                ? `opacity ${STAGGER_DURATION_MS}ms ease-out ${REVEAL_MS + MOBILE_LINKS.length * STAGGER_MS}ms, transform ${STAGGER_DURATION_MS}ms ease-out ${REVEAL_MS + MOBILE_LINKS.length * STAGGER_MS}ms`
+                : 'none',
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <img
+                src="/instagram.svg"
+                alt="Instagram"
+                width={27}
+                height={27}
+              />
+              <img src="/tiktok.svg" alt="TikTok" width={23} height={26.5} />
             </div>
+
+            <div>
+              <h3>kianasmith@gmail.com</h3>
+              <h3>(720) 601 2978</h3>
+            </div>
+
+            <p className="text-dark/70">
+              6969 w 90th ave
+              <br />
+              Westminster, CO 80021
+            </p>
 
             <Button
               to="/contact"
-              className="w-full"
               onClick={closeMenu}
               tabIndex={isOpen ? 0 : -1}
             >

@@ -24,9 +24,12 @@ export default function SmoothScroll() {
     gsap.ticker.add(onTick)
     gsap.ticker.lagSmoothing(0)
 
+    window.__lenis = lenis
+
     return () => {
       gsap.ticker.remove(onTick)
       lenis.destroy()
+      delete window.__lenis
     }
   }, [])
 
