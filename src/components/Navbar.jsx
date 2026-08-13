@@ -1,9 +1,31 @@
+import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Button from './Button.jsx'
 
 function Navbar() {
+  const headerRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+
+    const setHeight = () => {
+      document.documentElement.style.setProperty(
+        '--navbar-height',
+        `${header.offsetHeight}px`
+      )
+    }
+
+    setHeight()
+
+    const observer = new ResizeObserver(setHeight)
+    observer.observe(header)
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <header className="w-full bg-background">
+    <header ref={headerRef} className="w-full bg-background">
       <nav className="mx-auto flex items-center justify-between px-5 py-3">
         <Link to="/" className="shrink-0">
           <img src="/logo.svg" alt="Skin is Ki" width={162} height={30} />

@@ -46,7 +46,10 @@ function Home() {
   return (
     <div>
       <section className="mx-auto px-5 pb-5">
-        <div className="relative h-180 w-full overflow-hidden rounded-[40px] bg-dark">
+        <div
+          className="relative w-full overflow-hidden rounded-[40px] bg-dark"
+          style={{ height: 'calc(100vh - var(--navbar-height, 80px) - 20px)' }}
+        >
           <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
 
           <div className="absolute inset-0 flex items-end justify-between gap-6 p-10">
