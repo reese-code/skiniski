@@ -1,5 +1,46 @@
 import Button from '../components/Button.jsx'
 import AnimatedAboutText from '../components/AnimatedAboutText.jsx'
+import ServiceCard from '../components/ServiceCard.jsx'
+import hero from '../assets/hero.png'
+
+const services = [
+  {
+    name: 'Basic Facial',
+    price: '$60',
+    description: 'A 60-minute facial involving facial massages and masks',
+    image: hero,
+  },
+  {
+    name: 'Basic Facial',
+    price: '$60',
+    description: 'A 60-minute facial involving facial massages and masks',
+    image: hero,
+  },
+  {
+    name: 'Basic Facial',
+    price: '$60',
+    description: 'A 60-minute facial involving facial massages and masks',
+    image: hero,
+  },
+  {
+    name: 'Basic Facial',
+    price: '$60',
+    description: 'A 60-minute facial involving facial massages and masks',
+    image: hero,
+  },
+  {
+    name: 'Basic Facial',
+    price: '$60',
+    description: 'A 60-minute facial involving facial massages and masks',
+    image: hero,
+  },
+  {
+    name: 'Basic Facial',
+    price: '$60',
+    description: 'A 60-minute facial involving facial massages and masks',
+    image: hero,
+  },
+]
 
 function Home() {
   return (
@@ -29,7 +70,18 @@ function Home() {
         <AnimatedAboutText />
       </section>
 
-      <section id="services" />
+      <section
+        id="services"
+        className="mx-auto max-w-[1289px] px-5 py-20 text-left"
+      >
+        <h2>Services</h2>
+
+        <div className="mt-10 grid grid-cols-3 gap-5">
+          {services.map((service, index) => (
+            <ServiceCard key={index} {...service} />
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
