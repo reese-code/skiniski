@@ -25,15 +25,15 @@ function AnimatedAboutText() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         chars,
-        { opacity: 0.6 },
+        { opacity: 0.5 },
         {
           opacity: 1,
           ease: 'none',
           stagger: 0.02,
           scrollTrigger: {
             trigger: textRef.current,
-            start: 'top bottom',
-            end: () => `+=${window.innerHeight * 20}`,
+            start: 'top 80%',
+            end: 'top 40%',
             scrub: 0.5,
           },
         }
