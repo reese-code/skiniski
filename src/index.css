@@ -8,12 +8,29 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Editorial New";
+  src: url("/PPEditorialNew-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editorial New";
+  src: url("/PPEditorialNew-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme {
   --color-background: #F6F8F7;
   --color-dark: #181818;
   --color-accent: #709255;
 
   --font-sans: "Graphik", sans-serif;
+  --font-editorial: "Editorial New", serif;
 
   --text-h1: 64px;
   --text-h1--line-height: 115%;

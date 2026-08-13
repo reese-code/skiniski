@@ -3,7 +3,7 @@ import Button from '../components/Button.jsx'
 function Home() {
   return (
     <div>
-      <section className="mx-auto max-w-7xl px-5 pb-5">
+      <section className="mx-auto px-5 pb-5">
         <div className="relative h-180 w-full overflow-hidden rounded-[40px] bg-dark">
           <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
 
@@ -22,6 +22,15 @@ function Home() {
             </Button>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-[1289px] px-5 py-20 text-left">
+        <p className="font-normal text-h2">
+          <span className="ml-20 font-editorial text-h2 uppercase">Skin is Ki</span> is
+          founded by Kiana Smith, who is a licensed esthetician who practices
+          esthetics, and her services are waxing, facials, and massages, and
+          other dermatologist recommendations.
+        </p>
       </section>
 
       <section id="services" />
