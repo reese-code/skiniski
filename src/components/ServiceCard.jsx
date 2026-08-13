@@ -1,9 +1,30 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { gsap } from 'gsap'
 
 function ServiceCard({ image, name, price, description }) {
+  const imageRef = useRef(null)
+
+  const handleEnter = () => {
+    gsap.to(imageRef.current, {
+      y: -8,
+      duration: 0.8,
+      ease: 'elastic.out(1, 0.5)',
+    })
+  }
+
+  const handleLeave = () => {
+    gsap.to(imageRef.current, {
+      y: 0,
+      duration: 0.8,
+      ease: 'elastic.out(1, 0.5)',
+    })
+  }
+
   return (
-    <div>
+    <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <img
+        ref={imageRef}
         src={image}
         alt={name}
         className="aspect-square w-full rounded-2xl border border-dark/10 object-cover"
@@ -16,11 +37,11 @@ function ServiceCard({ image, name, price, description }) {
         </div>
 
         <Link to="/contact">
-          <h3 className="underline">Book now</h3>
+          <h3 className="hover:underline">Book now</h3>
         </Link>
       </div>
 
-      <p className="mt-1 text-dark/70 w-[60%]">{description}</p>
+      <p className="mt-1 w-[60%] text-dark/70">{description}</p>
     </div>
   )
 }
