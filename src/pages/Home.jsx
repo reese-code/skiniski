@@ -1,6 +1,7 @@
 import Button from '../components/Button.jsx'
 import AnimatedAboutText from '../components/AnimatedAboutText.jsx'
 import ServiceCard from '../components/ServiceCard.jsx'
+import InstagramCarousel from '../components/InstagramCarousel.jsx'
 import hero from '../assets/hero.png'
 
 const services = [
@@ -85,6 +86,8 @@ function Home() {
           ))}
         </div>
       </section>
+
+      <InstagramCarousel />
     </div>
   )
 }
