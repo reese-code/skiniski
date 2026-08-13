@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 @font-face {
   font-family: "Graphik";
@@ -62,5 +63,12 @@
   h3 {
     font-size: var(--text-h3);
     line-height: 115%;
+  }
+
+  @media (max-width: 767px) {
+    :root {
+      --text-h1: 48px;
+      --text-h2: 32px;
+    }
   }
 }

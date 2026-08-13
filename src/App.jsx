@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import SmoothScroll from './components/SmoothScroll.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
@@ -9,6 +10,7 @@ import Results from './pages/Results.jsx'
 function App() {
   return (
     <div className="min-h-screen">
+      <SmoothScroll />
       <div
         className="relative z-10 min-h-screen bg-background"
         style={{ marginBottom: 'var(--footer-height, 0px)' }}

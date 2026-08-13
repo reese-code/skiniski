@@ -45,7 +45,7 @@ function AnimatedAboutText() {
 
   return (
     <p ref={textRef} className="font-normal text-h2">
-      <span className="ml-20 font-editorial text-h2 uppercase">
+      <span className="ml-20 font-editorial text-h2 uppercase max-md:ml-5">
         {splitToChars(BRAND_TEXT, 'brand')}
       </span>
       {splitToChars(BODY_TEXT, 'body')}

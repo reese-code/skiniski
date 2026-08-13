@@ -46,14 +46,14 @@ const services = [
 function Home() {
   return (
     <div>
-      <section className="mx-auto px-5 pb-5">
+      <section className="mx-auto px-5 pb-5 max-md:px-3">
         <div
           className="relative w-full overflow-hidden rounded-[40px] bg-dark"
           style={{ height: 'calc(100vh - var(--navbar-height, 80px) - 20px)' }}
         >
           <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
 
-          <div className="absolute inset-0 flex items-end justify-between gap-6 p-10">
+          <div className="absolute inset-0 flex items-end justify-between gap-6 p-10 max-md:flex-col max-md:items-start max-md:gap-4 max-md:px-3">
             <div>
               <h1 className="max-w-[600px] text-white">
                 Boast your skin&rsquo;s natural resilience
@@ -70,17 +70,17 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1289px] px-5 py-20 text-left">
+      <section className="mx-auto max-w-[1289px] px-5 py-20 text-left max-md:px-3">
         <AnimatedAboutText />
       </section>
 
       <section
         id="services"
-        className="mx-auto max-w-[1289px] px-5 py-20 text-left"
+        className="mx-auto max-w-[1289px] px-5 py-20 text-left max-md:px-3"
       >
         <h2>Services</h2>
 
-        <div className="mt-10 grid grid-cols-3 gap-5">
+        <div className="mt-10 grid grid-cols-3 gap-5 max-md:grid-cols-1">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} />
           ))}

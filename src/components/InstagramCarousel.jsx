@@ -70,14 +70,14 @@ function InstagramCarousel() {
 
   return (
     <section className="py-20">
-      <div className="mx-auto max-w-[1289px] px-5 text-left">
+      <div className="mx-auto max-w-[1289px] px-5 text-left max-md:px-3">
         <h2>As seen on #skiniski</h2>
       </div>
 
       <div ref={containerRef} className="mt-10 overflow-hidden">
         <div
           ref={trackRef}
-          className="flex w-max cursor-grab gap-5 px-5 active:cursor-grabbing"
+          className="flex w-max cursor-grab gap-5 px-5 active:cursor-grabbing max-md:px-3"
         >
           {CARDS.map((post, index) => (
             <div
