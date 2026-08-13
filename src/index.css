@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Graphik";
+  src: url("/GraphikCondensed-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-background: #F6F8F7;
+  --color-dark: #181818;
+  --color-accent: #709255;
+
+  --font-sans: "Graphik", sans-serif;
+
+  --text-h1: 64px;
+  --text-h1--line-height: 115%;
+  --text-h2: 40px;
+  --text-h2--line-height: 115%;
+  --text-h3: 20px;
+  --text-h3--line-height: 115%;
+  --text-body: 16px;
+  --text-body--line-height: 115%;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 115%;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    line-height: 115%;
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: 115%;
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    line-height: 115%;
+  }
+}
