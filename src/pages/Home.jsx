@@ -1,4 +1,5 @@
 import Button from '../components/Button.jsx'
+import AnimatedAboutText from '../components/AnimatedAboutText.jsx'
 
 function Home() {
   return (
@@ -25,12 +26,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-[1289px] px-5 py-20 text-left">
-        <p className="font-normal text-h2">
-          <span className="ml-20 font-editorial text-h2 uppercase">Skin is Ki</span> is
-          founded by Kiana Smith, who is a licensed esthetician who practices
-          esthetics, and her services are waxing, facials, and massages, and
-          other dermatologist recommendations.
-        </p>
+        <AnimatedAboutText />
       </section>
 
       <section id="services" />
