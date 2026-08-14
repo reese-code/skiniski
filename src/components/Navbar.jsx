@@ -93,16 +93,16 @@ function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          <Link to="/about" className="text-h3 text-dark hover:text-accent">
+          <Link to="/about" className="text-h3 text-dark hover:underline">
             About
           </Link>
-          <Link to="/#services" className="text-h3 text-dark hover:text-accent">
+          <Link to="/#services" className="text-h3 text-dark hover:underline">
             Services
           </Link>
-          <Link to="/contact" className="text-h3 text-dark hover:text-accent">
+          <Link to="/contact" className="text-h3 text-dark hover:underline">
             Contact
           </Link>
-          <Link to="/results" className="text-h3 text-dark hover:text-accent">
+          <Link to="/results" className="text-h3 text-dark hover:underline">
             Results
           </Link>
         </div>

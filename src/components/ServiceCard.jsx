@@ -12,10 +12,10 @@ function ServiceCard({ image, name, price, description }) {
 
   useEffect(() => {
     const el = descriptionRef.current
-    if (!el || expanded) return
+    if (!el) return
 
     setIsOverflowing(el.scrollHeight > el.clientHeight + 1)
-  }, [description, expanded])
+  }, [description])
 
   const toggleExpanded = () => {
     const container = containerRef.current
@@ -27,7 +27,7 @@ function ServiceCard({ image, name, price, description }) {
 
     if (!expanded) {
       const collapsedHeight = p.clientHeight
-      p.classList.remove('line-clamp-2')
+      p.classList.remove('clamp-2')
       const fullHeight = p.scrollHeight
 
       gsap.set(container, { height: collapsedHeight })
@@ -41,9 +41,9 @@ function ServiceCard({ image, name, price, description }) {
       setExpanded(true)
     } else {
       const fullHeight = p.clientHeight
-      p.classList.add('line-clamp-2')
+      p.classList.add('clamp-2')
       const collapsedHeight = p.clientHeight
-      p.classList.remove('line-clamp-2')
+      p.classList.remove('clamp-2')
 
       gsap.set(container, { height: fullHeight })
       gsap.to(container, {
@@ -51,11 +51,11 @@ function ServiceCard({ image, name, price, description }) {
         duration: 0.45,
         ease: 'power2.inOut',
         onComplete: () => {
-          p.classList.add('line-clamp-2')
+          p.classList.add('clamp-2')
           gsap.set(container, { height: 'auto' })
+          gsap.to(overlayRef.current, { opacity: 1, duration: 0.3 })
         },
       })
-      gsap.to(overlayRef.current, { opacity: 1, duration: 0.3, delay: 0.2 })
       setExpanded(false)
     }
   }
@@ -114,10 +114,7 @@ function ServiceCard({ image, name, price, description }) {
           if (isOverflowing || expanded) toggleExpanded()
         }}
       >
-        <p
-          ref={descriptionRef}
-          className={`text-dark/70 ${expanded ? '' : 'line-clamp-2'}`}
-        >
+        <p ref={descriptionRef} className="text-dark/70 clamp-2">
           {description}
         </p>
 

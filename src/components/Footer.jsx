@@ -74,16 +74,16 @@ function Footer() {
         </div>
 
         <div className="flex flex-col items-end gap-3 max-md:order-3">
-          <Link to="/about" className="text-h3 hover:opacity-70">
+          <Link to="/about" className="text-h3 hover:underline">
             About
           </Link>
-          <Link to="/#services" className="text-h3 hover:opacity-70">
+          <Link to="/#services" className="text-h3 hover:underline">
             Services
           </Link>
-          <Link to="/results" className="text-h3 hover:opacity-70">
+          <Link to="/results" className="text-h3 hover:underline">
             Results
           </Link>
-          <Link to="/contact" className="text-h3 hover:opacity-70">
+          <Link to="/contact" className="text-h3 hover:underline">
             Contact
           </Link>
         </div>
