@@ -43,7 +43,7 @@ function Footer() {
       ref={footerRef}
       className="fixed bottom-0 left-0 z-0 w-full bg-accent text-dark"
     >
-      <div className="relative mx-auto flex max-w-[1289px] items-start justify-between gap-6 px-5 py-20 max-md:flex-wrap max-md:gap-8 max-md:px-3">
+      <div className="relative mx-auto flex  items-start justify-between gap-6 px-5 py-20 max-md:flex-wrap max-md:gap-8 max-md:px-3">
         <div className="flex flex-col gap-3 max-md:order-2">
           <div className="flex items-center gap-3">
             <a href={instagramUrl || undefined}>
