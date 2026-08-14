@@ -1,9 +1,19 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 
 function ServiceCard({ image, name, price, description }) {
   const imageRef = useRef(null)
+  const descriptionRef = useRef(null)
+  const [expanded, setExpanded] = useState(false)
+  const [isOverflowing, setIsOverflowing] = useState(false)
+
+  useEffect(() => {
+    const el = descriptionRef.current
+    if (!el || expanded) return
+
+    setIsOverflowing(el.scrollHeight > el.clientHeight + 1)
+  }, [description, expanded])
 
   const handleEnter = () => {
     gsap.to(imageRef.current, {
@@ -50,7 +60,25 @@ function ServiceCard({ image, name, price, description }) {
         </Link>
       </div>
 
-      <p className="mt-1 w-[60%] text-dark/70">{description}</p>
+      <div
+        className={`relative mt-1 w-full ${isOverflowing || expanded ? 'cursor-pointer' : ''}`}
+        onClick={() => {
+          if (isOverflowing || expanded) setExpanded((prev) => !prev)
+        }}
+      >
+        <p
+          ref={descriptionRef}
+          className={`text-dark/70 ${expanded ? '' : 'line-clamp-2'}`}
+        >
+          {description}
+        </p>
+
+        {isOverflowing && !expanded && (
+          <span className="absolute right-0 bottom-0 bg-background pl-2 text-dark/70">
+            See more
+          </span>
+        )}
+      </div>
     </div>
   )
 }
